@@ -1,0 +1,22 @@
+// Don't judge my css, this is just a demo
+
+.contact
+  height 80px
+  width 180px
+  border 1px solid blue
+  display inline-block
+  text-align center
+
+  &-label
+    font-size 24px
+    text-decoration underline
+
+  &-name
+    font-weight bold
+
+  &-number
+    color blue
+
+
+// Notice that the class name definitions are white-space dependent,
+//     and they cascade with the '&'

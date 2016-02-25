@@ -1,5 +1,12 @@
 import {Route, DefaultRoute} from 'react-router'
 
 import App from 'app'
+import PhoneBook from 'phonebook'
 
 Route(name='root' handler=App path=props.base)
+Route(name='phonebook' handler=PhoneBook path='phonebook/:user')
+
+//- you can also use 'DefaultRoute' and add params to the 'path'
+//- e.g. DefaultRoute(name='homePage' handler=HomePage path=':user')
+//- would automatically redirect to http://localhost:3000/userId
+

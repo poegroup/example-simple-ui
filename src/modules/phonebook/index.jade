@@ -6,9 +6,7 @@
 
 import './index.ess'
 
-h1= `#{userName}'s Phone Book`
-
-// usually this would come from the API, but the implementation after getting the data doesn't change
+//- usually this would come from the API, but the implementation after getting the data doesn't change
 var.
   contacts = [
     {"name": "Mom", "phone_number": "(555) 555-5551"},
@@ -16,14 +14,19 @@ var.
     {"name": "Mike", "phone_number": "(555) 555-5553"},
     {"name": "Cameron", "phone_number": "(555) 555-5554"}
   ]
+var userName = params.user
+
+h1= `${userName}'s Phone Book`
 each contact in contacts
   //- this is the same as div.contact in jade or div(class="contact") in plane HTML
   .contact
     .contact-label Contact
     .contact-name= contact.name
-    .contact-phone_number= contact.phone_number
+    //- you can access functions in the :module block with 'this.functionName'
+    .contact-number(onClick=this.onNumberClick.bind(null, contact))= contact.phone_number
 
 :module
+  // within the module block, you can leverage all of the React lifecycle functions, or make your own
   export function componentDidMount() {
     console.log('component mounted');
   }
@@ -32,3 +35,10 @@ each contact in contacts
     console.log('loading component');
   }
 
+  export function onNumberClick(contact) {
+    // in our example we can access the dot properties of our contact
+    //    in our normal apps, we would need to leverage the data store (hyper-store)
+    //    to drill down into properties that aren't already loaded
+    console.log(contact);
+    alert(`${contact.name}'s phone number is: ${contact.phone_number}`);
+  }
