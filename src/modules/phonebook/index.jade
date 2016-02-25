@@ -1,0 +1,34 @@
+:doc
+  a simple Phone Book
+
+  @name PhoneBook
+  @param user
+
+import './index.ess'
+
+h1= `#{userName}'s Phone Book`
+
+// usually this would come from the API, but the implementation after getting the data doesn't change
+var.
+  contacts = [
+    {"name": "Mom", "phone_number": "(555) 555-5551"},
+    {"name": "Dad", "phone_number": "(555) 555-5552"},
+    {"name": "Mike", "phone_number": "(555) 555-5553"},
+    {"name": "Cameron", "phone_number": "(555) 555-5554"}
+  ]
+each contact in contacts
+  //- this is the same as div.contact in jade or div(class="contact") in plane HTML
+  .contact
+    .contact-label Contact
+    .contact-name= contact.name
+    .contact-phone_number= contact.phone_number
+
+:module
+  export function componentDidMount() {
+    console.log('component mounted');
+  }
+
+  export function componentWillMount() {
+    console.log('loading component');
+  }
+
